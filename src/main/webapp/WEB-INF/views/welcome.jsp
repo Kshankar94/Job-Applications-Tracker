@@ -31,9 +31,6 @@
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="/create_index" role="tab">Create</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="/#faq" role="tab">Modify</a>
-    </li>
 </ul>
 </form>
 

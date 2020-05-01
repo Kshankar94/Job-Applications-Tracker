@@ -5,10 +5,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Repository;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class AppRepositoryImpl implements AppRepository {
@@ -18,6 +19,7 @@ public class AppRepositoryImpl implements AppRepository {
 
     public AppRepositoryImpl(RedisTemplate<String,App> redisTemplate){
         this.redisTemplate = redisTemplate;
+        this.redisTemplate.setDefaultSerializer(new StringRedisSerializer());
         hashOperations = redisTemplate.opsForHash();
     }
 
@@ -40,6 +42,7 @@ public class AppRepositoryImpl implements AppRepository {
 
     @Override
     public void update(App app) {
+
         save(app);
     }
 
@@ -55,8 +58,15 @@ public class AppRepositoryImpl implements AppRepository {
             return Long.valueOf(1);
         }
         else {
-            Long value = (Long) hashOperations.size("App") + 1;
-            return value;
+           Set<String> obj =  hashOperations.keys("App");
+           Set<Integer> ids = obj.stream().map(Integer::valueOf).collect(Collectors.toSet());
+           System.out.println("keys");
+           System.out.println(ids);
+           int val = Collections.max(ids);
+           System.out.println("max");
+           System.out.println(val);
+           Long value = Long.valueOf(val) + 1;
+           return value;
         }
 
     }

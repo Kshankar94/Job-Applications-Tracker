@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
@@ -30,6 +31,12 @@ public class ApplicationTrackerApplication extends SpringBootServletInitializer 
 		RedisTemplate<String, App> redisTemplate = new RedisTemplate<>();
 		redisTemplate.setConnectionFactory(jedisConnectionFactory());
 		return redisTemplate;
+	}
+
+
+	@Bean
+	public GenericJackson2JsonRedisSerializer springSessionDefaultRedisSerializer() {
+		return new GenericJackson2JsonRedisSerializer();
 	}
 
 	public static void main(String[] args) {

@@ -20,12 +20,21 @@ public class App implements Serializable {
 
     private String jobUrl;
 
-    private String notes;
+    private String status;
 
-    public App(String id, String company,String jobTitle) {
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public App(String id, String company, String jobTitle, String status) {
         this.company = company;
         this.id = id;
         this.jobTitle = jobTitle;
+        this.status = status;
     }
 
     
@@ -69,11 +78,4 @@ public class App implements Serializable {
         this.jobUrl = jobUrl;
     }
 
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
 }

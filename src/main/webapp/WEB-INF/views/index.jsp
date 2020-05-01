@@ -12,6 +12,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Create</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <style>
         td{
             padding: 10px;
@@ -89,9 +90,52 @@
                         <option value="Rejected">Rejected</option>
                     </select>
                    </td>
-
-
                 </tr>
+                <tr>
+                    <td> <label for="jobBoard">jobBoard:</label> </td>
+                    <td> <select id="jobBoard" name="jobBoard">
+                    </select>
+                    </td>
+                </tr>
+
+                    <script type="text/javascript">
+                        var xml = "<Jobs>";
+                        xml += "<JobBoard>";
+                        xml += "<Name>LinkedIn</Name>";
+                        xml += "</JobBoard>";
+                        xml += "<JobBoard>";
+                        xml += "<Name>Indeed</Name>";
+                        xml += "</JobBoard>";
+                        xml += "<JobBoard>";
+                        xml += "<Name>AngelList.co</Name>";
+                        xml += "</JobBoard>";
+                        xml += "<JobBoard>";
+                        xml += "<Name>GithuBJobs</Name>";
+                        xml += "</JobBoard>";
+                        xml += "<JobBoard>";
+                        xml += "<Name>StackOverflow</Name>";
+                        xml += "</JobBoard>";
+                        xml += "<JobBoard>";
+                        xml += "<Name>wayUp</Name>";
+                        xml += "</JobBoard>";
+                        xml += "<JobBoard>";
+                        xml += "<Name>Career Fair</Name>";
+                        xml += "</JobBoard>";
+                        var jobBoards = $(xml).find("jobBoard");
+                        var ddl = $("#jobBoard");
+                        jobBoards.each(function () {
+                            var option = $("<option />");
+
+                            //Set Customer Name in Text part.
+                            option.html($(this).find("Name").text());
+
+                            //Add the Option element to DropDownList.
+                            ddl.append(option);
+                        });
+                    </script>
+
+
+
                 <tr>
                     <td><input type="submit" id="save" name="save" value="Save"></td>
                 </tr>
