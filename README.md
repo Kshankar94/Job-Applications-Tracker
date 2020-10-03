@@ -9,11 +9,6 @@ Explanation of process flow:
 
 System Design:
 
-
- 
-
-
-
 Design:
 This application follows an MVC pattern. For example, the model will be the job data records, views will be the categories and home page, and controllers will control each module (Applied, Offer and home page search).
 
