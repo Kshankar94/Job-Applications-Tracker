@@ -60,11 +60,7 @@ public class AppRepositoryImpl implements AppRepository {
         else {
            Set<String> obj =  hashOperations.keys("App");
            Set<Integer> ids = obj.stream().map(Integer::valueOf).collect(Collectors.toSet());
-           System.out.println("keys");
-           System.out.println(ids);
            int val = Collections.max(ids);
-           System.out.println("max");
-           System.out.println(val);
            Long value = Long.valueOf(val) + 1;
            return value;
         }
